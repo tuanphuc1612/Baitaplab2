@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-witdh, initial">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Nhập tên của bạn</h1>
+    <form id="myFrom">
+        <label for="name">Tên:</label>
+        <input type="text" name="name" id="name" required>
+        <button type="submit">Gửi</button>
+    </form>
+
+    <p id="response"></p>
+    <script>
+        document.getElementById('my form').addEventListener('submit', async function (e){
+            e.preventDefault();
+            const name = document.getElementById('name').value;
+            const response = await fetch('/submit', {
+                method:'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({name: name}),
+            const data = await response.json();
+            document.getElementById('response').textContent =data.message;   
+            });
+        });
+    </script>
+</body>
+</html>
